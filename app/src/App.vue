@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import widgetThing from './components/Widget'
+import Zyp from './containers/zyp'
 
 export default {
   name: 'app',
   components: {
-    widgetThing
+    Zyp
   }
 }
 </script>

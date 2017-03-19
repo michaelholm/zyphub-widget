@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
-import home from './containers/Home'
+import home from './containers/zyp'
 import dashboard from './containers/dashboard'
 // application routes
 const routes = [
