@@ -1,169 +1,116 @@
 <template>
   <div class="zyp-app">
     <div class="zyp-dashboard" v-bind:class="{ active: isActive }">
-      <div id="side-tab" v-on:click="togglePanel" ></div>
-      <div class="zyp-cards">
-        <div class="ui teal card conv-comp__card">
-          <div class="content">
-            <div class="header"><span><a class="ui yellow label">Hulk</a></span><span>Hulk Hogan</span><i class="remove icon conv-comp__close-icon"></i></div>
-            <div class="meta"><span>1</span><span> Open Conversations</span></div>
+      <div id="side-tab" v-on:click="togglePanel" v-bind:class="{ newMsg: hasUnreadMsg }">
+        <div class="vertical-text">Zyp Dashboard</div>
+      </div>
+      <div id="test-tab" v-on:click="toggleNewMsg"></div>
+      <div class="zyp-dashboard-hdr">
+        <div class="box">
+          <div class="box-count">3</div>
+          <div class="box-title">Unread</div>
         </div>
-        <div class="ui card conv-comp__card subcard" style="background:#FBBD08;">
-          <div class="content">
-            <div class="ui list">
-              <div class="conv-comp__list-item--bottom">
-                <div>
-                  <table class="conv-comp__background ui table light-here-58cc18a9e97e952419da6ffb-a88a4a65496ef4d2074b9954">
-                      <tbody>
-                        <tr>
-                          <td>
-                            <div class="card">
-                              <div class="content">
-                                <div class="right floated ui">
-                                  <div class="description">
-                                    <div class="conv-comp__message-label">message</div><span>wqewq</span></div>
-                                  </div>
-                                  <div class="header">
-                                    <div class="conv-comp__originator-label">originator</div><span><a class="ui pink label">Tony</a></span></div>
-                                  <div class="sub header conv-comp--left-padding">
-                                    <div class="conv-comp__participant-label">active participants</div><span><a class="ui yellow label">Hulk</a></span></div>
-                                  </div>
-                              </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="conv-comp__header-wrapper">
-                            <div>
-                              <div class="conv-comp__list-item--bottom">
-                                <table class="">
-                                  <tbody>
-                                    <tr class="conv-comp__envelope">
-                                      <td class="conv-comp__pattern conv-comp--center"><span>FCFS</span>
-                                        <div class="conv-comp__pattern--subtitle">Pattern</div>
-                                      </td>
-                                      <td class="conv-comp__priority conv-comp--center">
-                                        <div class="conv-comp__priority--dropcap"><i class="warning icon"></i></div>
-                                        <div class="conv-comp__priority--subtitle">Priority</div>
-                                      </td>
-                                      <td class="conv-comp__members conv-comp--center">
-                                        <div class="conv-comp__members--dropcap">2</div>
-                                        <div class="conv-comp__members--subtitle">Members</div>
-                                      </td>
-                                      <td class="conv-comp__replies conv-comp--center">
-                                        <div class="conv-comp__replies--dropcap">1</div>
-                                        <div class="conv-comp__replies--subtitle">Replies</div>
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="conv-comp__timestamp">
-                        <div class="conv-comp__timestamp--top">
-                            <div>Fri Mar 17 2017</div>
-                            <div>12:11:12 PM</div>
-                            <div>never expires</div>
-                        </div>
-                    </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                <div class="conv-comp__state">
-                  <div class="ui vertical accordion conv-comp__segment--50 conv-comp__accordion conv-comp__accordion--left">
-                    <div class="title"><i class="dropdown icon"></i><span>Conversation Statistics</span></div>
-                      <div class="content">
-                        <table>
-                          <tbody>
-                            <tr>
-                              <td class="conv-comp__state-stats">
-                               <div class="conv-comp__state-stats--dropcap">0</div>
-                                <div class="conv-comp__state-stats--subtitle">Leave</div>
-                              </td>
-                              <td class="conv-comp__state-stats">
-                                <div class="conv-comp__state-stats--dropcap">0</div>
-                                <div class="conv-comp__state-stats--subtitle">Delegate</div>
-                              </td>
-                              <td class="conv-comp__state-stats">
-                                <div class="conv-comp__state-stats--dropcap">0</div>
-                                <div class="conv-comp__state-stats--subtitle">Forward</div>
-                              </td>
-                              <td class="conv-comp__state-stats">
-                                <div class="conv-comp__state-stats--dropcap">0</div>
-                                <div class="conv-comp__state-stats--subtitle">Ok</div>
-                              </td>
-                              <td class="conv-comp__state-stats">
-                                <div class="conv-comp__state-stats--dropcap">1</div>
-                                <div class="conv-comp__state-stats--subtitle">Accept</div>
-                              </td>
-                              <td class="conv-comp__state-stats">
-                                <div class="conv-comp__state-stats--dropcap">0</div>
-                                <div class="conv-comp__state-stats--subtitle">Reject</div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                    <div class="ui vertical accordion conv-comp__segment--50 conv-comp__accordion conv-comp__accordion--right">
-                      <div class="title"><i class="dropdown icon"></i><span>Member Status</span></div>
-                      <div class="content">
-                        <table>
-                          <tbody>
-                            <tr>
-                              <td class="conv-comp__state-member"><span><a class="ui red label">Park</a></span>
-                                <div class="conv-comp__state-member--state">REMOVED</div>
-                              </td>
-                              <td class="conv-comp__state-member"><span><a class="ui orange label">Luke</a></span>
-                                <div class="conv-comp__state-member--state">REMOVED</div>
-                              </td>
-                              <td class="conv-comp__state-member"><span><a class="ui yellow label">Hulk</a></span>
-                                <div class="conv-comp__state-member--state">ACCEPTED</div>
-                              </td>
-                              <td class="conv-comp__state-member"><span><a class="ui pink label">Tony</a></span>
-                                <div class="conv-comp__state-member--state">SENT</div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                </div>
-            </div>
+        <div class="box">
+          <div class="box-count">16</div>
+          <div class="box-title">Read</div>
         </div>
-    </div>
-</div>
-<div class="extra content">
-    <div class="ui bottom attached button"><i class="add icon"></i><span>New Conversation</span></div>
-</div>
-</div>
-</div>
+        <div class="box">
+          <div class="box-count">1</div>
+          <div class="box-title">Actionable</div>
+        </div>
+      </div>
+      <ul class="zyp-cards">
+        <li class="zyp-card" v-on:click="showCard">
+          <div class="priority"><i class="">&nbsp;</i></div>
+          <div class="originator"><span class="tag is-light">Tony</span></div>
+          <div class="date-pattern">
+            <div class="date">03/19/2017</div>
+            <div class="pattern">FYI</div>
+          </div>
+          <div class="msg">Everyone should know about this.</div>
+          <div class="card-detail">
+  
+          </div>
+        </li>
+  
+        <li class="zyp-card" v-on:click="showCard">
+          <div class="priority"><i class="fa fa-exclamation-circle icon"></i></div>
+          <div class="originator"><span class="tag is-info">Hulk</span></div>
+          <div class="date-pattern">
+            <div class="date">03/21/2017</div>
+            <div class="pattern">FCFS</div>
+          </div>
+          <div class="msg">Four tickets for Cubs opening day available at face value. First come, first served</div>
+          <div class="card-detail">
+  
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
-  
-</div>
-
 </template>
 
 <script>
-  export default {
-    name: 'widget',
+  import store from '../vuex/store'
+  import Zyp from '../../static/zyphub/dist/zyphublib.js'
+  import zypUtils from '../util/zyp-utils.js'
+  import { fetchMessages } from '../vuex/actions'
+  
+  var ZypWidget = {
+    name: 'zyp-widget',
     data () {
       return {
         msg: 'Welcome to the XX App',
-        isActive: false
+        isActive: false,
+        hasUnreadMsg: false,
+        cardIsDisplayed: false,
+        focusCardId: null,
+        messages: []
+      }
+    },
+    store,
+    vuex: {
+      getters: {
+        activeMessage: state => state.activeMessage
+      },
+      actions: {
+        fetchMessages
       }
     },
     methods: {
       togglePanel: function (event) {
         this.isActive = !this.isActive
+        // this.$store.dispatch('FETCH_MESSAGES')
+        if (this.isActive) { zyp.getMessageList() }
+      },
+      toggleNewMsg: function () {
+        this.hasUnreadMsg = !this.hasUnreadMsg
+        this.focusCardId = this.focusCardId++
+        console.log('.-->', this.messages)
+      },
+      showCard: function (event) {
+        event.stopPropagation()
+        var el = event.currentTarget.getElementsByClassName('card-detail')[0]
+        el.classList.contains('active') ? el.classList.remove('active') : el.classList.add('active')
       }
     }
   }
+
+  // instantiate zyp library and register event handlers
+  var zyp = new Zyp()
+  zyp.onNotification(zypUtils.userNotificationHandler)
+  zyp.onMessageList(zypUtils.messageListHandler, ZypWidget)
+  zyp.onError(zypUtils.errorHandler)
+  zyp.loginByEnterpriseToken(
+    'Luke Perry',
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJaeXBIdWIiLCJpc3MiOiJ6eXBodWIuY29tIiwic3ViIjoiZW50ZXJwcmlzZSIsImp0aSI6IjU2MTk0MGYxNjQyN2RjZWQ1Yjg1MjlhMiIsImFkbWluIjp0cnVlLCJpYXQiOjE0ODU0NDk2MjAsImV4cCI6MTUxNjk4NTYyMH0.7qMxmTG6jPqDfYjQxTa-Z9Qplqob-FYOFby02WZ9VmE'
+  )
+
+  export default ZypWidget
+
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
   h1,
   h2 {
     font-weight: normal;
@@ -193,24 +140,157 @@
     border: 1px solid #cecece;
     padding: 5px;
     margin: 0 auto;
+    color: #fff;
   }
-
+  
   .zyp-dashboard {
     position: absolute;
     top: 40px;
     left: -490px;
-    transition: 1s;
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
+    transition: 0.7s;
+    -webkit-transition: 0.7s;
+    -moz-transition: 0.7s;
+    width: 450px;
+    height: 400px;
+    background-color: darkslategrey;
   }
   
   .zyp-dashboard.active {
-    transition: 1s;
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
+    transition: 0.7s;
+    -webkit-transition: 0.7s;
+    -moz-transition: 0.7s;
     left: -40px;
   }
-
+  
+  .zyp-dashboard-hdr {
+    border-bottom: 3px solid grey;
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .zyp-dashboard-hdr .box {
+    vertical-align: top;
+    display: inline-block;
+    font-size: 12px;
+    width: 140px;
+    height: 70px;
+    padding: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .zyp-dashboard-hdr .box .box-title {
+    font-weight: 700;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .zyp-dashboard-hdr .box .box-count {
+    font-size: 20px;
+    float: left;
+    font-weight: 700;
+    width: 100%;
+    color: firebrick;
+    font-size: 36px;
+    position: relative;
+    top: -5px;
+    left: 5px;
+  }
+  
+  .zyp-cards {
+    width: 450px;
+    height: 320px;
+    -webkit-transition: max-height 1s;
+    -moz-transition: max-height 1s;
+    -ms-transition: max-height 1s;
+    -o-transition: max-height 1s;
+    transition: max-height 1s;
+    background: #e5feff;
+    overflow: hidden;
+  }
+  
+  .zyp-card {
+    margin: 10px 5px;
+    clear: both;
+  }
+  
+  .zyp-card.active {
+    background: #cecece;
+    height: 260px;
+  }
+  
+  .zyp-card div {
+    vertical-align: top;
+  }
+  
+  .zyp-card div.card-detail {
+    height: 0;
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+  
+  .zyp-card div.card-detail.active {
+    height: 320px;
+    background-color: #cecece;
+    transition-property: all;
+    transition-duration: .7s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+  
+  .zyp-card div.priority {
+    display: inline-block;
+    width: 25px;
+    padding: 5px 3px 0px 3px;
+  }
+  
+  .zyp-card div.date-pattern {
+    display: inline-block;
+  }
+  
+  .zyp-card div.date {
+    width: 70px;
+    font-size: 11px;
+  }
+  
+  .zyp-card div.date-pattern {
+    display: inline-block;
+    width: 70px;
+    padding: 0 5px;
+  }
+  
+  .zyp-card div.msg {
+    display: inline-block;
+    width: 260px;
+    height: 25px;
+    padding: 10px;
+    float: right;
+    padding: 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .zyp-card div.originator,
+  .zip-card div.date-pattern {
+    display: inline-block;
+    width: 60px;
+    padding: 3px 5px 0 5px;
+  }
+  
+  .icon {
+    color: #fff;
+  }
+  
+  .zyp-card i {
+    width: 20px;
+  }
+  
+  #side-tab {
+    text-orientation: sideways-right;
+  }
+  
   #side-tab {
     background: #c81e2b;
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#f9d835), to(#f3961c));
@@ -222,203 +302,56 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     position: absolute;
-    right: -40px;
-    top: 120px;
-    height: 108px;
-    width: 40px;
+    right: -35px;
+    top: 20px;
+    height: 110px;
+    width: 35px;
     margin: 0;
     padding: 0;
     position: absolute;
     z-index: 9999;
-    display:block;
+    display: block;
   }
-
+  
+  .vertical-text {
+    transform: rotate(90deg);
+    padding: 4px 12px;
+    color: #666;
+    font-weight: 700;
+    justify-content: center;
+    font-family: inherit;
+    line-height: 14px;
+  }
+  
+  #test-tab {
+    background: #cecece;
+    -webkit-top-right-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    right: -20px;
+    bottom: 40px;
+    height: 50px;
+    width: 20px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 9999;
+    display: block;
+  }
+  
+  #side-tab.newMsg {
+    background: #c81e2b;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#f9d835), to(#c81e2b));
+    background: -moz-linear-gradient(#f9d835, #c81e2b);
+    background: -o-linear-gradient(#f9d835, #c81e2b);
+    background: linear-gradient(#f9d835, #c81e2b);
+  }
+  
   #side-tab .zyp-dashboard {
     position: absolute;
     top: 40px;
     left: -500px;
-  }
-
-
-  /** ui cards */
-  .ui.cards>.teal.card, .ui.teal.card, .ui.teal.cards>.card {
-    box-shadow: 0 0 0 1px #D4D4D5, 0 2px 0 0 #00B5AD, 0 1px 3px 0 #D4D4D5;
-  }
-  .ui.cards>.card {
-      font-size: 1em;
-  }
-  .ui.cards>.card {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      margin: .875em .5em;
-      float: none;
-  }
-  .ui.card:last-child {
-      margin-bottom: 0;
-  }
-  .ui.card, .ui.cards>.card {
-    max-width: 100%;
-    position: relative;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    width: 290px;
-    min-height: 0;
-    background: #FFF;
-    padding: 0;
-    border: none;
-    border-radius: .28571429rem;
-    box-shadow: 0 1px 3px 0 #D4D4D5, 0 0 0 1px #D4D4D5;
-    -webkit-transition: box-shadow .1s ease,-webkit-transform .1s ease;
-    transition: box-shadow .1s ease,transform .1s ease;
-    z-index: '';
-  }
-  .ui.card {
-      margin: 1em 0;
-  }
-
-  .ui.card>.content, .ui.cards>.card>.content {
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    border: none;
-    border-top: 1px solid rgba(34,36,38,.1);
-    background: 0 0;
-    margin: 0;
-    padding: 1em;
-    box-shadow: none;
-    font-size: 1em;
-    border-radius: 0;
-  }
-
-  .ui.card>.extra, .ui.cards>.card>.extra {
-    max-width: 100%;
-    min-height: 0!important;
-    -webkit-box-flex: 0;
-    -webkit-flex-grow: 0;
-    -ms-flex-positive: 0;
-    flex-grow: 0;
-    border-top: 1px solid rgba(0,0,0,.05)!important;
-    position: static;
-    background: 0 0;
-    width: auto;
-    margin: 0;
-    padding: .75em 1em;
-    top: 0;
-    left: 0;
-    color: rgba(0,0,0,.4);
-    box-shadow: none;
-    -webkit-transition: color .1s ease;
-    transition: color .1s ease;
-  }
-  .conv-comp__card {
-    width: 450px!important;
-  }
-
-  .conv-comp__background {
-      background: #f3f3f5!important;
-  }
-
-
-  .ui.card>.content>.header:not(.ui), .ui.cards>.card>.content>.header:not(.ui) {
-    font-weight: 700;
-    font-size: 1.28571429em;
-    margin-top: -.21425em;
-    line-height: 1.2857em;
-  }
-  .ui.card>.content>.header, .ui.cards>.card>.content>.header {
-    display: block;
-    margin: '';
-    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
-    color: rgba(0,0,0,.85);
-  }
-
-  .ui.yellow.label, .ui.yellow.labels .label {
-    background-color: #FBBD08!important;
-    border-color: #FBBD08!important;
-    color: #FFF!important;
-  }
-
-  .ui.label { 
-    display: inline-block;
-    line-height: 1;
-    vertical-align: baseline;
-    margin: 0 .14285714em;
-    background-color: #E8E8E8;
-    background-image: none;
-    padding: .5833em .833em;
-    color: rgba(0,0,0,.6);
-    text-transform: none;
-    font-weight: 700;
-    border: 0 solid transparent;
-    border-radius: .28571429rem;
-    -webkit-transition: background .1s ease;
-    transition: background .1s ease;
-  }
-  .ui.label:last-child {
-    margin-right: 0;
-  }
-
-  .ui.label:first-child {
-    margin-left: 0;
-  }
-
-  /** table */
-  .ui.table {
-    width: 100%;
-    background: #FFF;
-    margin: 1em 0;
-    border: 1px solid rgba(34,36,38,.15);
-    box-shadow: none;
-    border-radius: .28571429rem;
-    text-align: left;
-    color: rgba(0,0,0,.87);
-    border-collapse: separate;
-    border-spacing: 0;
-  }
-
-  .ui.table {
-    font-size: 1em;
-  }
-
-  .ui.table:first-child {
-    margin-top: 0;
-  }
-
-  .ui.table {
-    width: 100%;
-    background: #FFF;
-    margin: 1em 0;
-    border: 1px solid rgba(34,36,38,.15);
-    box-shadow: none;
-    border-radius: .28571429rem;
-    text-align: left;
-    color: rgba(0,0,0,.87);
-    border-collapse: separate;
-    border-spacing: 0;
-  }
-
-  .ui.table tr:first-child td {
-    border-top: none;
-  }
-  .ui.table tr td {
-    border-top: 1px solid rgba(34,36,38,.1);
-  }
-  .ui.table td {
-    padding: .71428571em;
-    text-align: inherit;
-  }
-  .ui.table td, .ui.table th {
-    -webkit-transition: background .1s ease,color .1s ease;
-    transition: background .1s ease,color .1s ease;
   }
 </style>

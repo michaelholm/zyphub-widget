@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <widgetThing></widgetThing>
+    <zypWidget></zypWidget>
   </div>
 </template>
 
