@@ -34,3 +34,8 @@
   
   }
 </script>
+<style>
+  .zyp-cards {
+    overflow: scroll;
+  }
+</style>
