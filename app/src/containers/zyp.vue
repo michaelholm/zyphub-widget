@@ -19,92 +19,45 @@
           <div class="box-title">Actionable</div>
         </div>
       </div>
-      <ul class="zyp-cards">
-        <li class="zyp-card" v-on:click="showCard">
-          <div class="priority"><i class="">&nbsp;</i></div>
-          <div class="originator"><span class="tag is-light">Tony</span></div>
-          <div class="date-pattern">
-            <div class="date">03/19/2017</div>
-            <div class="pattern">FYI</div>
-          </div>
-          <div class="msg">Everyone should know about this.</div>
-          <div class="card-detail">
-  
-          </div>
-        </li>
-  
-        <li class="zyp-card" v-on:click="showCard">
-          <div class="priority"><i class="fa fa-exclamation-circle icon"></i></div>
-          <div class="originator"><span class="tag is-info">Hulk</span></div>
-          <div class="date-pattern">
-            <div class="date">03/21/2017</div>
-            <div class="pattern">FCFS</div>
-          </div>
-          <div class="msg">Four tickets for Cubs opening day available at face value. First come, first served</div>
-          <div class="card-detail">
-  
-          </div>
-        </li>
-      </ul>
+      <zypCards />
     </div>
   </div>
 </template>
 
 <script>
   import store from '../vuex/store'
-  import Zyp from '../../static/zyphub/dist/zyphublib.js'
-  import zypUtils from '../util/zyp-utils.js'
-  import { fetchMessages } from '../vuex/actions'
-  
+  import zypCards from '../components/zypCards'
+
   var ZypWidget = {
     name: 'zyp-widget',
     data () {
       return {
-        msg: 'Welcome to the XX App',
         isActive: false,
         hasUnreadMsg: false,
-        cardIsDisplayed: false,
-        focusCardId: null,
-        messages: []
+        focusCardId: 0
       }
     },
     store,
-    vuex: {
-      getters: {
-        activeMessage: state => state.activeMessage
-      },
-      actions: {
-        fetchMessages
-      }
+    components: {
+      zypCards
     },
     methods: {
       togglePanel: function (event) {
         this.isActive = !this.isActive
-        // this.$store.dispatch('FETCH_MESSAGES')
-        if (this.isActive) { zyp.getMessageList() }
       },
       toggleNewMsg: function () {
         this.hasUnreadMsg = !this.hasUnreadMsg
         this.focusCardId = this.focusCardId++
-        console.log('.-->', this.messages)
-      },
-      showCard: function (event) {
-        event.stopPropagation()
-        var el = event.currentTarget.getElementsByClassName('card-detail')[0]
-        el.classList.contains('active') ? el.classList.remove('active') : el.classList.add('active')
+      }
+    },
+    watch: {
+      isActive: function (val) {
+        if (val) {
+          this.$store.dispatch('FETCH_MESSAGES')
+        }
       }
     }
   }
-
-  // instantiate zyp library and register event handlers
-  var zyp = new Zyp()
-  zyp.onNotification(zypUtils.userNotificationHandler)
-  zyp.onMessageList(zypUtils.messageListHandler, ZypWidget)
-  zyp.onError(zypUtils.errorHandler)
-  zyp.loginByEnterpriseToken(
-    'Luke Perry',
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJaeXBIdWIiLCJpc3MiOiJ6eXBodWIuY29tIiwic3ViIjoiZW50ZXJwcmlzZSIsImp0aSI6IjU2MTk0MGYxNjQyN2RjZWQ1Yjg1MjlhMiIsImFkbWluIjp0cnVlLCJpYXQiOjE0ODU0NDk2MjAsImV4cCI6MTUxNjk4NTYyMH0.7qMxmTG6jPqDfYjQxTa-Z9Qplqob-FYOFby02WZ9VmE'
-  )
 
   export default ZypWidget
 

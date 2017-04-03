@@ -1,6 +1,3 @@
-// import Zyp from '../../static/zyphub/dist/zyphublib.js'
-// instantiate the library and register event handlers
-// var zyp = new Zyp()
 
 export default {
   // handle user notifications
@@ -14,7 +11,6 @@ export default {
       case 'enterprise:users':
         // having the enterprise user to zypId mapping fetch the users message list
         console.log('getting user messages')
-        // zyp.getMessageList()
         break
     }
   },
@@ -22,8 +18,12 @@ export default {
   messageListHandler: function (data, context) {
     // process the message list
     var messageList = data.messageList
-    console.log('messageList', messageList, context)
-    context.store.dispatch('FETCH_MESSAGES', messageList)
+    console.log('receiving message data', data)
+    var msgs = messageList.map(msg => {
+      return msg.getMessage()
+    })
+    console.log('msgs', msgs)
+    context.commit('SET_MESSAGES', msgs)
   },
 
   errorHandler: function (type, data, context) {
