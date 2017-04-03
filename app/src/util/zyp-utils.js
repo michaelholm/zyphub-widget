@@ -2,6 +2,8 @@
 export default {
   // handle user notifications
   userNotificationHandler: function (type, data, context) {
+    console.log('userNotificationHandler', type, data, context)
+
     switch (type) {
       case 'login:enterpriseToken':
         // once logged into an enterprise fetch its users

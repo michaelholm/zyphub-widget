@@ -1,9 +1,11 @@
 <template>
-  <ul class="zyp-cards">
-    <li v-for="msg in messages" class="zyp-card" :key="msg.id">
-      <zypCard :msg="msg" />
-    </li>
-  </ul>
+  <div class="zyp-cards">
+    <ul class="zyp-cards">
+      <li v-for="msg in messages" :key="msg.id">
+        <zypCard :msg="msg" />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -14,7 +16,9 @@
     name: 'zypCards',
     store,
     data () {
-      return {}
+      return {
+
+      }
     },
     computed: {
       messages () {
@@ -24,18 +28,23 @@
     components: {
       zypCard
     },
-    methods: {
-      showCard: function (event) {
-        event.stopPropagation()
-        var el = event.currentTarget.getElementsByClassName('card-detail')[0]
-        el.classList.contains('active') ? el.classList.remove('active') : el.classList.add('active')
-      }
-    }
+    methods: {}
   
   }
 </script>
 <style>
   .zyp-cards {
+    width: 450px;
+    height: 320px;
+    -webkit-transition: max-height 1s;
+    -moz-transition: max-height 1s;
+    -ms-transition: max-height 1s;
+    -o-transition: max-height 1s;
+    transition: max-height 1s;
     overflow: scroll;
+  }
+
+  .zyp-cards li {
+    margin: 0;
   }
 </style>
