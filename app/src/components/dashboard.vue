@@ -26,10 +26,7 @@
     data () {
       return {}
     },
-    methods: {
-
-    }
-  
+    methods: {}
   }
 </script>
 <style>

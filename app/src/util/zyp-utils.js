@@ -14,17 +14,18 @@ export default {
         // having the enterprise user to zypId mapping fetch the users message list
         console.log('getting user messages')
         break
+      case 'message:new':
+        console.log('new message', data, context)
+        break
     }
   },
 
   messageListHandler: function (data, context) {
     // process the message list
     var messageList = data.messageList
-    console.log('receiving message data', data)
     var msgs = messageList.map(msg => {
       return msg.getMessage()
     })
-    console.log('msgs', msgs)
     context.commit('SET_MESSAGES', msgs)
   },
 

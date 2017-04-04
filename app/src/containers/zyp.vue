@@ -1,5 +1,5 @@
 <template>
-  <div class="zyp-app">
+  <div class="zyp-app" v-bind:class="{ active: isActive }">
     <zypDashboard />
     <zypCards />
     <div id="side-tab" v-on:click="togglePanel" v-bind:class="{ newMsg: hasUnreadMsg }">
@@ -50,11 +50,31 @@
 </script>
 
 <style>
-  h1,
-  h2 {
-    font-weight: normal;
+  .zyp-app {
+    position: absolute;
+    left: -500px;
+    top: 50px;
+    width: 462px;
+    border: 1px solid #cecece;
+    padding: 5px;
+    margin: 0 auto;
+    color: #fff;
+    -webkit-transition: 0.7s;
+    -moz-transition: 0.7s;
+    -ms-transition: 0.7s;
+    -o-transition: 0.7s;
+    transition: 0.7s;    
   }
-  
+
+  .zyp-app.active {
+    left: -37px;
+    -webkit-transition: 0.7s;
+    -moz-transition: 0.7s;
+    -ms-transition: 0.7s;
+    -o-transition: 0.7s;
+    transition: 0.7s;
+  }
+
   ul {
     list-style-type: none;
     padding: 0;
@@ -64,30 +84,8 @@
     display: inline-block;
     margin: 0 10px;
   }
-  
-  a {
-    color: #42b983;
-  }
-  
-  .new-msg-input-field {
-    margin: 10px 0;
-  }
-  
-  .zyp-app {
-    position: absolute;
-    left: 0;
-    top: 50px;
-    width: 460px;
-    border: 1px solid #cecece;
-    padding: 5px;
-    margin: 0 auto;
-    color: #fff;
-  }
-  
-  .icon {
-    color: #fff;
-  }
-    
+
+  /** SIDE TAB */
   #side-tab {
     text-orientation: sideways-right;
   }
@@ -114,7 +112,7 @@
     display: block;
   }
   
-  .vertical-text {
+  #side-tab .vertical-text {
     transform: rotate(90deg);
     padding: 4px 12px;
     color: #666;
@@ -124,6 +122,21 @@
     line-height: 14px;
   }
   
+  #side-tab.newMsg {
+    background: #c81e2b;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#f9d835), to(#c81e2b));
+    background: -moz-linear-gradient(#f9d835, #c81e2b);
+    background: -o-linear-gradient(#f9d835, #c81e2b);
+    background: linear-gradient(#f9d835, #c81e2b);
+  }
+  
+  #side-tab .zyp-dashboard {
+    position: absolute;
+    top: 40px;
+    left: -500px;
+  }
+
+  /** TEST TAB */
   #test-tab {
     background: #cecece;
     -webkit-top-right-border-radius: 10px;
@@ -141,18 +154,30 @@
     z-index: 9999;
     display: block;
   }
-  
-  #side-tab.newMsg {
-    background: #c81e2b;
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#f9d835), to(#c81e2b));
-    background: -moz-linear-gradient(#f9d835, #c81e2b);
-    background: -o-linear-gradient(#f9d835, #c81e2b);
-    background: linear-gradient(#f9d835, #c81e2b);
+
+  /** TOOLTIPS */
+  .tooltip {
+    display: none;
+    opacity: 0;
+    transition: opacity .15s;
+    pointer-events: none;
+    padding: 4px;
+    z-index: 10000;
   }
-  
-  #side-tab .zyp-dashboard {
-    position: absolute;
-    top: 40px;
-    left: -500px;
+
+  .tooltip .tooltip-content {
+    font-size: 12px;
+    background: black;
+    color: white;
+    border-radius: 16px;
+    padding: 5px 10px 4px;
+  }
+
+  .tooltip.tooltip-open-transitionend {
+    display: block;
+  }
+
+  .tooltip.tooltip-after-open {
+    opacity: 1;
   }
 </style>

@@ -16,9 +16,7 @@
     name: 'zypCards',
     store,
     data () {
-      return {
-
-      }
+      return {}
     },
     computed: {
       messages () {
