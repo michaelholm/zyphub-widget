@@ -30,7 +30,7 @@
   
   }
 </script>
-<style>
+<style scoped>
   .zyp-cards {
     width: 450px;
     height: 320px;
