@@ -55,7 +55,6 @@
         el.classList.contains('active') ? el.classList.remove('active') : el.classList.add('active')
       }
     }
-  
   }
 </script>
 
